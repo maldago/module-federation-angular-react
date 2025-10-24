@@ -1,0 +1,62 @@
+{
+  "name": "module-federation-angular-react",
+  "version": "0.0.0",
+  "description": "Example showcasing Module Federation using Angular and React",
+  "repository": "https://github.com/maldago/module-federation-angular-react.git",
+  "author": "Samuel Cochrane <chopshoolihan@gmail.com> (https://github.com/maldago)",
+
+  "license": "MIT",
+  "private": true,
+  "pnpm": {
+    "overrides": {
+      "cypress": "13.12.0",
+      "@types/react": "18.3.10",
+      "@types/react-dom": "18.3.0",
+      "webpack": "5.76.1"
+    }
+  },
+  "workspaces": {
+    "packages": [
+      "angular-profile",
+      "react-user-list"
+    ]
+  },
+  "devDependencies": {
+    "@types/node": "20.9.0",
+    "abbrev": "2.0.0",
+    "allure-commandline": "2.29.0",
+    "concurrently": "8.2.2",
+    "cross-env": "7.0.3",
+    "cross-spawn": "7.0.3",
+    "cypress": "13.13.0",
+    "cypress-fill-command": "1.0.2",
+    "cypress-real-events": "1.13.0",
+    "cypress-wait-until": "3.0.2",
+    "forever": "4.0.3",
+    "husky": "9.0.11",
+    "jest": "29.7.0",
+    "js-yaml": "4.1.0",
+    "lerna": "8.1.8",
+    "lint-staged": "^15.2.10",
+    "mocha": "10.6.0",
+    "prettier": "3.3.3",
+    "pretty-quick": "4.0.0",
+    "semver": "7.6.3",
+    "typescript": "5.5.3"
+  },
+  "scripts": {
+    "list:all": "pnpm list --filter \"*\" --only-projects --depth -1 --json",
+    "list:changed": "pnpm list --filter \"...[origin/main]\" --only-projects --depth -1 --json",
+    "build": "pnpm --filter --parallel build",
+    "submodules": "git pull --recurse-submodules",
+    "prettier": "prettier --write \"**/*.{js,jsx,json,md,ts,tsx}\"",
+    "prettier:check": "prettier --list-different \"**/*.{js,jsx,json,md,ts,tsx}\"",
+    "test": "jest test/index.spec.js --maxWorkers=2",
+    "cypress:debug": "cypress open --e2e --config-file cypress-e2e/config/cypress.config.ts --browser=chrome",
+    "cypress:run": "cypress run --config-file cypress-e2e/config/cypress.config.ts --browser=chrome",
+    "report:generate": "allure generate ./cypress/results/allure-results --clean -o ./cypress/report",
+    "report:open": "allure open ./cypress/report",
+    "preinstall": "npx only-allow pnpm"
+  },
+  "packageManager": "pnpm@9.4.0+sha512.f549b8a52c9d2b8536762f99c0722205efc5af913e77835dbccc3b0b0b2ca9e7dc8022b78062c17291c48e88749c70ce88eb5a74f1fa8c4bf5e18bb46c8bd83a"
+}
